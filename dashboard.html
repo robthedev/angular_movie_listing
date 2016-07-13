@@ -1,0 +1,72 @@
+<!doctype html>
+<html class="no-js" lang="" ng-app="moviesApp">
+    <head>
+        <meta charset="utf-8">
+        <meta http-equiv="x-ua-compatible" content="ie=edge">
+        <title>Movies</title>
+        <meta name="description" content="">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+
+        <!--<link rel="stylesheet" href="css/main.css">-->
+        <link rel="stylesheet" href="http://netdna.bootstrapcdn.com/bootstrap/3.1.1/css/bootstrap.min.css">
+    </head>
+    <body ng-controller="MoviesCtrl">
+        <!--[if lt IE 8]>
+            <p class="browserupgrade">You are using an <strong>outdated</strong> browser. Please <a href="http://browsehappy.com/">upgrade your browser</a> to improve your experience.</p>
+        <![endif]-->
+
+        <!-- Add your site or application content here -->
+
+         <div class="movies">
+           <div class="Drama">
+             
+           </div>
+           <div class="comedy">
+             
+           </div>
+         </div>
+
+<p>
+        Search:
+        <input ng-model="MoviesCtrl.query">
+      </p>
+
+      <p>
+        Sort by:
+        <select ng-model="MoviesCtrl.orderProp">
+          <option value="genre">Alphabetical</option>
+          <option value="age">Newest</option>
+        </select>
+      </p>
+
+          <div ng-repeat="movie in movies | filter:MoviesCtrl.query | orderBy:MoviesCtrl.orderProp">
+            <!-- edit a message -->
+            <h3 ng-model="movie.genre">{{movie.genre}}</h3>
+            <p ng-model="movie.title" ng-change="movies.$save(movie)">{{movie.title}}</p>
+            <p ng-model="movie.rating" ng-change="movies.$save(movie)">{{movie.rating}}</p>
+            <!--<input class="genre" ng-model="movie.genre" ng-change="movies.$save(movie)"> -->
+            <a targer="_blank" href=" http://www.omdbapi.com/?s="+ movie.title>link</a>
+         
+            <button ng-click="movies.$remove(movie)">Delete Message</button>
+          </div>
+     <a href="index.html">home</a>
+
+        <script src="https://www.gstatic.com/firebasejs/3.1.0/firebase.js"></script>
+        <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.3.15/angular.min.js"></script>
+        <script src='https://cdn.firebase.com/js/client/2.4.2/firebase.js'></script>
+        <script src="https://cdn.firebase.com/libs/angularfire/1.2.0/angularfire.min.js"></script>
+        <script>
+          // Initialize Firebase
+          var config = {
+            apiKey: "AIzaSyBVTgUTuFMRH2Vj4Ich9JVJVOh-W08_Cdo",
+            authDomain: "movies-55772.firebaseapp.com",
+            databaseURL: "https://movies-55772.firebaseio.com",
+            storageBucket: "movies-55772.appspot.com",
+          };
+          firebase.initializeApp(config);
+        </script>
+        <script src="https://code.jquery.com/jquery-1.12.2.min.js"></script>
+        <script src="http://netdna.bootstrapcdn.com/bootstrap/3.1.1/js/bootstrap.min.js"></script>
+        <script src="main.js"></script>
+    </body>
+   </html> 
